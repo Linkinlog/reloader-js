@@ -44,25 +44,6 @@ export const Reloader = function () {
     }
   }
 
-  function establishEvents() {
-    window.addEventListener("mousemove", resetCounterAndClearWarn);
-    window.addEventListener("keypress", resetCounterAndClearWarn);
-    window.addEventListener("scroll", resetCounterAndClearWarn);
-    window.addEventListener("touchstart", resetCounterAndClearWarn);
-  }
-
-  function resetCounterAndClearWarn() {
-    counter = 0;
-    clearWarning();
-  }
-
-  function clearWarning() {
-    const warning = document.getElementById(warningId);
-    if (warning) {
-      warning.remove();
-    }
-  }
-
   function displayWarning(warningText) {
     if (document.getElementById(warningId)) {
       return;
@@ -74,6 +55,40 @@ export const Reloader = function () {
     warningP.innerText = warningText;
     warning.appendChild(warningP);
     body.appendChild(warning);
+  }
+
+  function establishEvents() {
+    const debounceTime = 500;
+    const debouncedClear = debounce(resetCounterAndClearWarn, debounceTime);
+
+    window.addEventListener("mousemove", debouncedClear);
+    window.addEventListener("keypress", debouncedClear);
+    window.addEventListener("scroll", debouncedClear);
+    window.addEventListener("touchstart", debouncedClear);
+  }
+
+  const debounce = (mainFunction, delay) => {
+    let timer;
+
+    return function (...args) {
+      clearTimeout(timer);
+
+      timer = setTimeout(() => {
+        mainFunction(...args);
+      }, delay);
+    };
+  };
+
+  function resetCounterAndClearWarn() {
+    counter = 0;
+    clearWarning();
+  }
+
+  function clearWarning() {
+    const warning = document.getElementById(warningId);
+    if (warning) {
+      warning.remove();
+    }
   }
 
   return {
