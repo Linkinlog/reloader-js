@@ -16,7 +16,7 @@
     "timeout"
   ],
   "author": "Linkinlog",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/linkinlog/reloader-js/issues"
   },
