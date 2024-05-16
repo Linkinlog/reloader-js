@@ -1,0 +1,24 @@
+{
+  "name": "reloader",
+  "version": "0.1.0",
+  "description": "Tool to automatically reload/redirect the browser after a given time, with an overlay to allow for user intervention.",
+  "main": "reloader.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/linkinlog/reloader-js.git"
+  },
+  "keywords": [
+    "reload",
+    "overlay",
+    "timeout"
+  ],
+  "author": "Linkinlog",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/linkinlog/reloader-js/issues"
+  },
+  "homepage": "https://github.com/linkinlog/reloader-js#readme"
+}
