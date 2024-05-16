@@ -58,13 +58,21 @@ export const Reloader = function () {
   }
 
   function establishEvents() {
-    const debounceTime = 500;
+    const debounceTime = 50;
     const debouncedClear = debounce(resetCounterAndClearWarn, debounceTime);
 
-    window.addEventListener("mousemove", debouncedClear);
-    window.addEventListener("keypress", debouncedClear);
-    window.addEventListener("scroll", debouncedClear);
-    window.addEventListener("touchstart", debouncedClear);
+    window.addEventListener("mousemove", () => {
+      debouncedClear();
+    });
+    window.addEventListener("keypress", () => {
+      debouncedClear();
+    });
+    window.addEventListener("scroll", () => {
+      debouncedClear();
+    });
+    window.addEventListener("touchstart", () => {
+      debouncedClear();
+    });
   }
 
   const debounce = (mainFunction, delay) => {
