@@ -16,17 +16,10 @@ export const Reloader = function () {
     }
     establishEvents();
 
-    execOnInterval(countIntervalMs, () => {
+    setInterval(() => {
       checkCounter(countTillReload, countTillWarn);
       counter++;
-    });
-  }
-
-  function execOnInterval(interval, callback) {
-    callback();
-    setTimeout(() => {
-      execOnInterval(interval, callback);
-    }, interval);
+    }, countIntervalMs);
   }
 
   function checkCounter(timelimit, warning) {
@@ -58,34 +51,19 @@ export const Reloader = function () {
   }
 
   function establishEvents() {
-    const debounceTime = 50;
-    const debouncedClear = debounce(resetCounterAndClearWarn, debounceTime);
-
     window.addEventListener("mousemove", () => {
-      debouncedClear();
+      resetCounterAndClearWarn();
     });
     window.addEventListener("keypress", () => {
-      debouncedClear();
+      resetCounterAndClearWarn();
     });
     window.addEventListener("scroll", () => {
-      debouncedClear();
+      resetCounterAndClearWarn();
     });
     window.addEventListener("touchstart", () => {
-      debouncedClear();
+      resetCounterAndClearWarn();
     });
   }
-
-  const debounce = (mainFunction, delay) => {
-    let timer;
-
-    return function (...args) {
-      clearTimeout(timer);
-
-      timer = setTimeout(() => {
-        mainFunction(...args);
-      }, delay);
-    };
-  };
 
   function resetCounterAndClearWarn() {
     counter = 0;
