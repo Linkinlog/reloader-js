@@ -1,5 +1,5 @@
 {
-  "name": "reloader",
+  "name": "@linkinlog/reloader",
   "version": "0.1.0",
   "description": "Tool to automatically reload/redirect the browser after a given time, with an overlay to allow for user intervention.",
   "main": "reloader.js",
